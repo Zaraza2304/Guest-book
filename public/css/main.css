@@ -1,0 +1,186 @@
+body {
+	font-family: Arial, serif;
+	font-size: 16px;
+}
+header {
+	margin-bottom: 20px;
+}
+h1 {
+	font-size: 26px;
+}
+h2 {
+	font-size: 18px;
+	font-weight: 600;
+}
+table {
+	width: 100%;
+	margin-top: 40px;
+	margin-bottom: 50px;
+	border: 1px solid black;
+}
+tr {
+	border-bottom: 1px solid black;
+	font-weight: 500;
+}
+th {
+	border-right: 1px solid black;
+	padding: 5px;
+	font-weight: 500;
+}
+footer {
+	width: 100%;
+	height: 100px;
+	display: block;
+	margin-top: 50px;
+}
+.head_table {
+	font-weight: 600;
+}
+.container {
+	width: 70%;
+	margin: 0px auto;
+}
+.wrap_h {
+	width: 100%;
+	margin-top: 20px;
+	text-align: center;
+}
+.content {
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+#hidden_block {
+	display: none;
+	visibility: hidden;
+}
+.col-lg {
+	width: 100%;
+	height: auto;
+	margin: 0px auto 20px;
+}
+#table {
+	word-wrap: break-word;
+}
+.inscription {
+	height: 50px;
+	text-align: left;
+	font-size: 18px;
+	border-bottom: 1px solid black;
+}
+.comment_block {
+	width: 100%;
+	margin: 20px 0 0 0!important;
+	padding: 10px 5px 35px 0px!important;
+}
+.comment_block:hover {
+	background-color: #f9f9f9;
+	box-shadow: 2px 2px #c6c6c6;
+}
+.author {
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+}
+.author span {
+	float: left;
+	padding-left: 30px;
+	color: #b56622;
+	font-weight: 600;
+}
+.time {
+	display: block;
+	margin-bottom: 10px;
+}
+.time span {
+	float: right;
+	margin: -27px 0px 0px;
+}
+.comment_field p {
+	margin: 0px 20px;
+	padding: 0px;
+	word-wrap: break-word;
+	text-align: justify;
+	line-height: 19px;
+}
+.delete {
+	margin-top: 10px;
+	float: right;
+}
+.delete:hover {
+	color: #0086b3;
+}
+.comment-delete {
+
+}
+.comm_block {
+	width: 100%;
+	height: auto;
+	margin: 10px auto 0;
+	display: inline-block;
+}
+.field_block {
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+.field_block_left {
+	width: 40%;
+	float: left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+.field_block_right {
+	width: 40%;
+	float: right;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+.l_name {
+	display: block;
+	margin-bottom: 12px;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 600;
+}
+.i_name {
+	margin: 10px 0px 0px;
+	width: 100%;
+	display: block;
+	height: 30px;
+	font-size: 16px;
+	font-weight: 500;
+	border: 1px solid black;
+	border-radius: 7px;
+	padding-left: 5px;
+	box-sizing: border-box;
+}
+.l_comment {
+	font-size: 18px;
+	font-weight: 600;
+	text-align: left;
+	display: block;
+}
+.textarea {
+	width: 100%;
+	height: 120px;
+	margin-top: 10px;
+	font-size: 15px;
+}
+.submit {
+	width: 130px;
+	height: 30px;
+	border-radius: 6px;
+	background-color: #c7cea68f;
+	float: left;
+}
+.footer_bl {
+	width: 100%;
+	padding-top: 35px;
+	text-align: center;
+}
+
+
