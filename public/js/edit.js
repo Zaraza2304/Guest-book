@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$(document).on('click', '.img_delete',function () {
+	$(document).on('click', '.img_edit',function () {
 
 		let id_comment = $(this).attr('data_rec');
 		console.log('id: ' + id_comment);
@@ -9,7 +9,7 @@ $(document).ready(function () {
 			type: 'POST',
 			url: 'main.php',
 			data: ({
-				'delete' : true,
+				'edit' : true,
 				'id_comment' : id_comment,
 			}),
 			success: function (response) {

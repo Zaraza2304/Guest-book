@@ -33,13 +33,13 @@ $(document).ready(function () {
 			let date = $.datepicker.formatDate('yy-mm-dd', new Date());
 			let datetime = date + " " + h + ":" + m + ":" + s;
 
-			console.log('Id страницы: '+ p_id);
+			/*console.log('Id страницы: '+ p_id);
 			console.log('Имя: ' + comment_name.val());
 			console.log('E-mail: ' + comment_email.val());
 			console.log('Home-url: ' + comment_home_url);
 			console.log('Comment: ' + comment_text.val());
 			console.log('Button: ' + button);
-			console.log('Отправка Ajax');
+			console.log('Отправка Ajax');*/
 
 			$.ajax({
 				type: 'POST',
@@ -55,20 +55,22 @@ $(document).ready(function () {
 					"button" : button,
 				}),
 				success: function (response) {
-					if (response) {
+					if (response == 1) {
 						console.log('Answer: ' + response);
 
 						let out = '<tr>' +
-							'<td>'+comment_name.val()+'</td>' +
-							'<td>'+comment_email.val()+'</td>' +
-							'<td>'+comment_text.val()+'</td>' +
-							'<td>'+comment_home_url+'</td>' +
-							'<td>'+datetime+'</td>' +
+							'<th>'+comment_name.val()+'</th>' +
+							'<th>'+comment_email.val()+'</th>' +
+							'<th>'+comment_text.val()+'</th>' +
+							'<th>'+comment_home_url+'</th>' +
+							'<th>'+datetime+'</th>' +
+							'<th>'+'</th>' +
+							'<th>'+'</th>' +
 							'</tr>';
 
 						$("#table").append(out);
 					} else {
-						console.log('Error');
+						console.log('Error response');
 						console.log(response);
 					}
 				},

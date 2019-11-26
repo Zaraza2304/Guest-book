@@ -7,40 +7,21 @@ Class LoadComments {
 
     public function __construct($link)
     {
+
         $this->link = $link;
-
     }
-    /*
-    public function get_comments($page_id = 1) {
-
-        $sql = 'SELECT id, page_id, user_name, e_mail, text, created_at, home_page 
-        FROM Comments, Users 
-        WHERE page_id =' . $page_id . ' and Comments.user_id = Users.id';
-
-        $answer = mysqli_query($this->link, $sql);
-
-        //$result = array();
-
-        if (!$answer) {
-            echo "Error, LoadComments, get_comments: " .mysqli_error($this->link) . "<br>";
-            return false;
-        } else {
-            return mysqli_fetch_array($answer, MYSQLI_ASSOC);
-        }
-
-    }*/
 
     public function add_comment($data) {
-        $sql = 'INSERT INTO Comments (page_id, user_id, user_name, e_mail, text, home_page,
-                browser, ip, created_at) VALUE ("'
-            . $data['page_id'] .'", "'
+        $sql = 'INSERT INTO Comments (user_id, page_id, user_name, e_mail, comment, home_page,
+                ip, browser, created_at) VALUE ("'
             . $data['user_id'].'", "'
+            . $data['page_id'] .'", "'
             . $data['user_name'] .'", "'
             . $data['e_mail'] .'", "'
             . $data['text'] .'", "'
             . $data['homepage'] .'", "'
-            . $data['browser'] .'", "'
             . $data['ip'] .'", "'
+            . $data['browser'] .'", "'
             . $data['created'] . '")';
 
         $answer = mysqli_query($this->link, $sql);
@@ -52,6 +33,7 @@ Class LoadComments {
             return true;
         }
 
+        return $answer;
     }
 
     public function check_owner($name) {
@@ -62,13 +44,77 @@ Class LoadComments {
 
         $answer = mysqli_query($this->link, $sql);
         $result = mysqli_fetch_array($answer, MYSQLI_ASSOC);
-        if(!$answer) {
-            echo "Error cheking user!!! " . mysqli_error($this->link) . "<br>";
-            return false;
-        }
-        return $result;
 
+        if (!$result) {
+            $sql = "SELECT id
+                    FROM Users
+                    WHERE login = 'guest_lg'";
+
+            $answer = mysqli_query($this->link, $sql);
+            $result = mysqli_fetch_array($answer, MYSQLI_ASSOC);
+            return $result['id'];
+        }
+
+
+        return $result['id'];
     }
 
+    public function unset_comment($id) {
 
+        $sql = 'DELETE FROM Comments
+                WHERE id = ' . $id;
+
+        $answer = mysqli_query($this->link, $sql);
+
+        if(!$answer) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function get_comment($id) {
+        $sql = 'SELECT id, user_id, user_name, e_mail, comment, home_page, created_at
+        FROM Comments
+        WHERE id = '.$id;
+
+
+        $answer = mysqli_query($this->link, $sql);
+
+        if (!$answer) {
+            echo "Error fun get_data SELECT: " . mysqli_error($this->link) . "<br>";
+            return false;
+        } else {
+            $result = array();
+            while($row = mysqli_fetch_array($answer, MYSQLI_ASSOC))
+            {
+                $result[] = $row;
+            }
+        }
+
+        return $result;
+    }
+
+    public function update_comment($data) {
+
+
+        $sql = "UPDATE Comments
+                SET comment = '" .$data['text']. "', home_page = '" .$data['home_page']. "', update_at = now()
+                WHERE  id = " .$data['id'];
+
+        $answer = mysqli_query($this->link, $sql);
+        return $answer;
+    }
+
+    public function get_email($login = '') {
+
+        $sql = "SELECT e_mail
+                FROM Users
+                WHERE login = '" . $login . "'";
+
+        $answer = mysqli_query($this->link, $sql);
+        $result = mysqli_fetch_array($answer);
+
+        return $result['e_mail'];
+    }
 }

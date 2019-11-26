@@ -1,8 +1,4 @@
-<?php 
-	//include('db/db_config.php');
-
-    //$db = new LoadBd();
-    //$status = $db->connect_db();
+<?php
     include 'model/DB.php';
 
     $db = new LoadBd();
@@ -20,17 +16,37 @@
     include "controller/Comments.php";
     include "controller/Users.php";
 
-    $param = array();
+    $global_params = array();
 
     $user_controller = new Users($model_users);
 
     if ($user_controller->maybe()) {
-         $param['current_user'] = $user_controller->give_user();
+        $tmp = $user_controller->give_user();
+        $global_params['current_user'] = $tmp['login'];
+        $global_params['user_email'] = $tmp['e_mail'];
+        $global_params['user_id'] = $tmp['id'];
      } else {
-        $param['current_user'] = 'Аноним';
+        $global_params['current_user'] = 'Гость';
+        $global_params['user_id'] = 2;
      }
-   
+
 
     $page_controller = new Pages($model_page);
-    $param['page'] = $page_controller->get_page_data();
-    $param['comments'] = $page_controller->get_page_comments();
+
+    $global_params['page'] = $page_controller->get_page_data();
+
+    if ($global_params['page']['title'] === 'Гостевая книга') {
+
+        $global_params['comments'] = $page_controller->get_page_comments($global_params['user_id']);
+
+        if (count($global_params['comments']) > 0) {
+            $global_params['paginate'] = $page_controller->paginate();
+        } else {
+             $global_params['paginate'] = array();
+        }
+
+
+    } else {
+        $global_params['comments'] = array();
+    }
+

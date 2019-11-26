@@ -6,7 +6,7 @@ Class Users {
 		$this->model = $model;
 	}
 
-	public function registration($data) {
+	public function new_user($data) {
 
 		$login =  htmlentities($data['login']);
 		$email = htmlentities($data['e_mail']);
@@ -21,8 +21,8 @@ Class Users {
 		}
 
 		$answer = $this->model->add_user($login, $password, $email);
+
 		if(!$answer) {
-			//return $answer;
 			return 'В процессе регистрации что-то пошло не так. Попробуйте попозже.';
 		}
 
@@ -30,8 +30,8 @@ Class Users {
 		return true;
 	}
 
-	public function avtoriz($data) {
-		
+	public function authorization($data) {
+
 		$login =  htmlentities($data['login']);
 		$password = password_hash(htmlentities($data['password']), PASSWORD_BCRYPT);
 
@@ -40,7 +40,7 @@ Class Users {
 			return false;
 		}
 		$this->start_session($login);
-		
+
 		return true;
 	}
 
@@ -54,15 +54,24 @@ Class Users {
 
 	public function maybe() {
 		if (isset($_SESSION["authoris"]) and !(is_null($_SESSION))) {
-            return $_SESSION["authoris"]; 
+            return $_SESSION["authoris"];
         }
         else return false;
 	}
 
 	public function give_user() {
 		if (isset($_SESSION['lg'])) {
-			return $_SESSION['lg'];
+
+			$data = $this->model->data_user($_SESSION['lg']);
+
+			if(!$data) {
+				return array('login' => 'Гость', 'e_mail' => '', 'id' => 2);
+			}
+
+			return $data;
 		}
+
+
 	}
 
 

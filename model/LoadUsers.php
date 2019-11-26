@@ -22,7 +22,7 @@ Class LoadUsers {
 			return true;
 		} else {
 			return false;
-		}	
+		}
 	}
 
 	public function add_user($login, $password, $email) {
@@ -44,7 +44,7 @@ Class LoadUsers {
 				FROM Users
 				WHERE login = '" .$login. "' and password = '" .$password. "'";
 
-		
+
 		$answer = mysqli_query($this->link, $sql);
 		$result = mysqli_fetch_array($answer, MYSQLI_ASSOC);
 
@@ -53,5 +53,21 @@ Class LoadUsers {
 		} else {
 			return false;
 		}
+	}
+
+	public function data_user($login) {
+
+		$sql = "SELECT id, e_mail, login
+				FROM Users
+				WHERE login = '" .$login. "'";
+
+		$answer = mysqli_query($this->link, $sql);
+		$result = mysqli_fetch_array($answer, MYSQLI_ASSOC);
+
+		if(!$result) {
+			return false;
+		}
+
+		return $result;
 	}
 }

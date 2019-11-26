@@ -1,5 +1,5 @@
 <?php
-include "main.php";
+include "../main.php";
 
  if(isset($_POST['do_signup']))
  {
@@ -48,8 +48,8 @@ include "main.php";
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="public/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="public/css/main.css">
+	<link rel="stylesheet" href="../public/css/reset.css">
+	<link rel="stylesheet" href="../public/css/main.css">
 	<title><?php echo $global_params['page']['title']; ?></title>
 </head>
 <body>
@@ -57,22 +57,23 @@ include "main.php";
 	<?php //var_dump($_SESSINON); ?>
 	<div class="container">
 		<div class="link_home">
-			<a class="link" href="../index.php">Главная</a>
+			<a class="link" href="/">Главная</a>
 		</div>
 		<form action="" method="POST">
-		  <strong>Ваш логин</strong>
-		  <input type="text" name="login" value="<?php echo @$data['login']; ?>"><br/>
 
-		  <strong>Ваш Email</strong>
-		  <input type="email" name="email" value="<?php echo @$data['email']; ?>"><br/>
+			<label for="login">Логин</label>
+			<input type="text" name="login" value="<?php echo @$data['login']; ?>">
 
-		  <strong>Ваш пароль</strong>
-		  <input type="password" name="password" value="<?php echo @$data['password']; ?>"><br/>
+			<label for="email">Ваш Email</label>
+			<input type="email" name="email" value="<?php echo @$data['email']; ?>">
 
-		  <strong>Повторите пароль</strong>
-		  <input type="password" name="password_2" value="<?php echo @$data['password_2']; ?>"><br/>
+			<label for="password">Ваш пароль</label>
+			<input type="password" name="password" value="<?php echo @$data['password']; ?>">
 
-		  <button type="submit" name="do_signup">Регистрация</button>
+			<label for="password_2">Повторите пароль</label>
+			<input type="password" name="password_2" value="<?php echo @$data['password_2']; ?>">
+
+		  	<button class="submit_save" type="submit" name="do_signup">Регистрация</button>
 		</form>
 </div>
 </body>
